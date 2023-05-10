@@ -1,14 +1,26 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import loginImg from "../../../assets/images/login/login.svg";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { registerUser } = useContext(AuthContext);
 
   const handleSignUp = (e) => {
     e.preventDefault();
+
+    registerUser(email, password)
+      .then((result) => {
+        const signedUser = result.user;
+        console.log(signedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -65,7 +77,10 @@ const SignUp = () => {
               </form>
               <p className="my-4 text-center">
                 Have an Account?
-                <Link className="text-orange-600 ms-1 hover:underline" to="/sign-in">
+                <Link
+                  className="text-orange-600 ms-1 hover:underline"
+                  to="/sign-in"
+                >
                   Sign In
                 </Link>
               </p>

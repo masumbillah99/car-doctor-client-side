@@ -1,13 +1,25 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import loginImg from "../../../assets/images/login/login.svg";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { signInUser } = useContext(AuthContext);
 
   const handleSignIn = (e) => {
     e.preventDefault();
+
+    signInUser(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -63,7 +75,10 @@ const Login = () => {
               </form>
               <p className="my-4 text-center">
                 New to Car Doctors?
-                <Link className="text-orange-600 ms-1 hover:underline" to="/sign-up">
+                <Link
+                  className="text-orange-600 ms-1 hover:underline"
+                  to="/sign-up"
+                >
                   Sign Up
                 </Link>
               </p>
