@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const BookService = () => {
   const service = useLoaderData();
-  const { title, price, _id } = service;
+  const { _id, service_id, title, price, img } = service;
   const { user } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -13,23 +14,47 @@ const BookService = () => {
     e.preventDefault();
     const email = user?.email;
 
-    const order = {
+    const booking = {
       customerName: name,
       email,
       date,
-      service: _id,
+      img,
+      service: title,
+      service_id: _id,
       price: price,
     };
 
-    console.log(order);
+    console.log(booking);
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Congratulations",
+            text: "You successfully booked a service",
+          });
+        }
+      });
   };
 
   return (
     <div>
-      <h2>Hello, Book service: {title}</h2>
+      <hr />
+      <h2 className="text-center font-bold text-3xl my-10">
+        Book Service: {title}
+      </h2>
       <form
         onSubmit={handleBookService}
-        className="bg-[#F3F3F3] p-24 my-24 rounded-lg"
+        className="bg-[#F3F3F3] p-24 rounded-lg mb-24"
       >
         <div className=" grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="form-control">
@@ -60,7 +85,7 @@ const BookService = () => {
           </div>
           <div className="form-control">
             <input
-              type="number"
+              type="text"
               defaultValue={"$" + price}
               className="input input-bordered"
             />
