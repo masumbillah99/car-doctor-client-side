@@ -14,7 +14,7 @@ const ServiceCard = ({ service }) => {
           <h2 className="card-title">{title}</h2>
           <div className="flex text-red-500">
             <p>Price: ${price}</p>
-            <Link>
+            <Link to={`book/${_id}`}>
               <FaArrowRight />
             </Link>
           </div>
