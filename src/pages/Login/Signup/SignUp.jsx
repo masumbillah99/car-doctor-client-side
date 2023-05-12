@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import loginImg from "../../../assets/images/login/login.svg";
 import { AuthContext } from "../../../providers/AuthProvider";
 
@@ -17,9 +18,10 @@ const SignUp = () => {
       .then((result) => {
         const signedUser = result.user;
         console.log(signedUser);
+        toast("User added successfully");
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   };
 
@@ -87,6 +89,7 @@ const SignUp = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

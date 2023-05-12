@@ -5,10 +5,15 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const BookService = () => {
   const service = useLoaderData();
+  // console.log(service);
   const { _id, service_id, title, price, img } = service;
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
+
+  // if (loading) {
+  //   return <progress className="progress w-56"></progress>;
+  // }
 
   const handleBookService = (e) => {
     e.preventDefault();
@@ -40,7 +45,7 @@ const BookService = () => {
           Swal.fire({
             icon: "success",
             title: "Congratulations",
-            text: "You successfully booked a service",
+            text: "You successfully order a service",
           });
         }
       });

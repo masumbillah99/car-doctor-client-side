@@ -5,7 +5,7 @@ import BookService from "../pages/BookService/BookService";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login/Login";
-import SignUp from "../pages/Login/Signup/SignUp";
+import SignUp from "../pages/Login/SignUp/SignUp";
 
 const router = createBrowserRouter([
   {
