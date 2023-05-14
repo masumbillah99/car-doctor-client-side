@@ -6,14 +6,10 @@ import { AuthContext } from "../../providers/AuthProvider";
 const BookService = () => {
   const service = useLoaderData();
   // console.log(service);
-  const { _id, service_id, title, price, img } = service;
-  const { user, loading } = useContext(AuthContext);
+  const { _id, title, price, img } = service;
+  const { user } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
-
-  // if (loading) {
-  //   return <progress className="progress w-56"></progress>;
-  // }
 
   const handleBookService = (e) => {
     e.preventDefault();
@@ -29,8 +25,9 @@ const BookService = () => {
       price: price,
     };
 
-    console.log(booking);
+    // console.log(booking);
 
+    // send data client to server with post method
     fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {

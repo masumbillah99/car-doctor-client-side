@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 
 const ServiceCard = ({ service }) => {
-  const { _id, service_id, title, img, price, description, facility } = service;
+  const { _id, title, img, price } = service;
 
   return (
     <>
