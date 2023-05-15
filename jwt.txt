@@ -1,0 +1,22 @@
+        JWT (JSON WEB TOKEN)
+JWT is mainly used for authorization purpose, not authentication.
+
+Structure of jwt:
+    •	HEADER	{“alg”: “HS256”, “type”: “JWT”}
+    •	PAYLOAD	{“sub”:“1234567890”, “name”:”john doe”}
+    •	SIGNATURE	  HMACSHA(BASE64URL (header)
+
+JSON WEB TOKEN
+    •	INDUSTRY STANDARD RFC 7519
+    •	Securely transmits information between parties as a JSON object.
+    •	Digitally signed.
+
+How JWT works?
+    1.	Client login with username and password.
+    2.	Servers creates a token for the client.
+    3.	Servers sends a token to the client.
+    4.	Client stores the token on either local storage or browser cookie.
+    5.	Next time the client makes a request, a copy of the token is send to the server of authorization.
+    6.	Server verifies the JWT signature before giving the authorization.
+    7.	Servers responds to the client’s request.
+

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import logo from "../../../assets/logo.svg";
 import { AuthContext } from "../../../providers/AuthProvider";
 
@@ -8,8 +9,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logOutUser()
-      .then(() => console.log(""))
-      .catch((error) => console.log(error));
+      .then()
+      .catch((error) => toast.error(error.message));
   };
 
   const navItems = (
@@ -85,6 +86,7 @@ const Navbar = () => {
           <Link className="btn btn-outline btn-error ms-2">Appointment</Link>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

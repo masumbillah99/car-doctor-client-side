@@ -28,7 +28,7 @@ const BookService = () => {
     // console.log(booking);
 
     // send data client to server with post method
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://car-doctor-server-gilt-rho.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -1,23 +1,28 @@
 import { useContext } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import loginImg from "../../../assets/images/login/login.svg";
 import { AuthContext } from "../../../providers/AuthProvider";
+import SocialLogin from "../../shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSignIn = (e) => {
     e.preventDefault();
 
     signInUser(email, password)
       .then((result) => {
-        const loggedUser = result.user;
-        // console.log(loggedUser);
+        const user = result.user;
+        console.log(user);
         toast.success("User Login Successful");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(error.message);
@@ -84,6 +89,7 @@ const Login = () => {
                   Sign Up
                 </Link>
               </p>
+              <SocialLogin />
             </div>
           </div>
         </div>

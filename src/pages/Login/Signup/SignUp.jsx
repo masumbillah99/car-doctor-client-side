@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import loginImg from "../../../assets/images/login/login.svg";
 import { AuthContext } from "../../../providers/AuthProvider";
+import SocialLogin from "../../shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -86,6 +87,7 @@ const SignUp = () => {
                   Sign In
                 </Link>
               </p>
+              <SocialLogin />
             </div>
           </div>
         </div>
