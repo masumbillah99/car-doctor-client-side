@@ -1,4 +1,4 @@
-import About from "../About/About";
+import About from "../../shared/About/About";
 import Banner from "../Banner/Banner";
 import Services from "../Services/Services";
 

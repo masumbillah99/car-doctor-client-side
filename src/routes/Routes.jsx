@@ -3,6 +3,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import Main from "../layouts/Main";
 import Bookings from "../pages/Bookings/Bookings";
 import BookService from "../pages/BookService/BookService";
+import Blog from "../pages/shared/Blog/Blog";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login/Login";
 import SignUp from "../pages/Login/SignUp/SignUp";
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             <Bookings />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
     ],
   },
